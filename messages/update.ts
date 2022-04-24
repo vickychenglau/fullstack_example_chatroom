@@ -8,9 +8,9 @@ export const update: Handler = async (event: APIGatewayEvent, context: Context) 
   const data = JSON.parse(event.body);
 
   // validation
-  if (typeof data.text !== 'string' || typeof data.checked !== 'boolean') {
+  if (typeof data.text !== 'string' || typeof data.isDeleted !== 'boolean') {
     console.error('Validation Failed');
-    return errorResponse(400, `Couldn't update the todo item`)
+    return errorResponse(400, `Couldn't update the message item`)
   }
 
   const params = {
@@ -19,22 +19,22 @@ export const update: Handler = async (event: APIGatewayEvent, context: Context) 
       id: event.pathParameters!.id,
     },
     ExpressionAttributeNames: {
-      '#todo_text': 'text',
+      '#message_text': 'text',
     },
     ExpressionAttributeValues: {
       ':text': data.text,
-      ':checked': data.checked,
+      ':isDeleted': data.isDeleted,
       ':updatedAt': timestamp,
     },
-    UpdateExpression: 'SET #todo_text = :text, checked = :checked, updatedAt = :updatedAt',
+    UpdateExpression: 'SET #message_text = :text, isDeleted = :isDeleted, updatedAt = :updatedAt',
     ReturnValues: 'ALL_NEW',
   };
 
-  // update the todo in the database
+  // update the message in the database
   try {
     const res = await dynamoDb.update(params).promise()
     return successResponse(res.Attributes)
   } catch (error) {
-    return errorResponse(error.statusCode || 501, `Couldn't fetch the todo item`)
+    return errorResponse(error.statusCode || 501, `Couldn't fetch the message item`)
   }
 };

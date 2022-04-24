@@ -13,6 +13,6 @@ export const list: Handler = async (event: APIGatewayEvent, context: Context) =>
     const res = await dynamoDb.scan(params).promise()
     return successResponse(res.Items)
   } catch (error) {
-    return errorResponse(error.statusCode || 501, `Couldn't fetch the todo items`)
+    return errorResponse(error.statusCode || 501, `Couldn't fetch the message items`)
   }
 };

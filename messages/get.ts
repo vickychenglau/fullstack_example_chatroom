@@ -15,6 +15,6 @@ export const get: Handler = async (event: APIGatewayEvent, context: Context) => 
     const res = await dynamoDb.get(params).promise()
     return successResponse(res.Item)
   } catch (error) {
-    return errorResponse(error.statusCode || 501, `Couldn't fetch the todo item`)
+    return errorResponse(error.statusCode || 501, `Couldn't fetch the message item`)
   }
 };

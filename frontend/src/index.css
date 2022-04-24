@@ -1,5 +1,7 @@
 body {
   margin: 0;
+  background: #0d1117;
+  color: #e0e5eb;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +12,87 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.chatroom {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.chatroom h1 {
+    text-align: center;
+}
+
+.heading {
+    display: block;
+    height: 4em;
+}
+
+.message-box {
+    display: block;
+    height: calc(100vh - 10em - 4em);
+    min-width: 500px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background: #161b22;
+}
+
+.message-box table tr {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid grey;
+    padding: 0.5em;
+}
+
+.message-box table,
+.message-box table td,
+.message-box table tbody {
+    display: block;
+    width: 100%;
+}
+
+.message-container div {
+    display: inline-block;
+}
+
+.message-timestamp {
+    display: block;
+    width: 10em;
+    font-size: 14px;
+}
+
+.message-buttons {
+    color: lightblue;
+    font-size: 14px;
+}
+
+.message-buttons:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.deleted-message {
+    margin-left: 1em;
+    font-style: italic;
+    color: grey;
+}
+
+.deleted-message-button {
+    display: none;
+}
+
+.comment-box > textarea {
+    display: block;
+    background: #e0e5eb;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    min-height: 7em;
+    width: 95%;
+    white-space: pre-wrap;
+    border: none;
+    resize: none;
 }

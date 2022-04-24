@@ -17,18 +17,18 @@ export const create: Handler = async (event: APIGatewayEvent, context: Context) 
     Item: {
       id: uuid.v1(),
       text: data.text,
-      checked: false,
+      isDeleted: false,
       createdAt: timestamp,
       updatedAt: timestamp
     }
   }
 
-  // write the todo to the database
+  // write the message to the database
   try {
     const res = dynamoDb.put(params).promise()
     return successResponse(params.Item)
   } catch (error) {
     console.error(error)
-    return errorResponse(400, 'Couldn\'t create the todo item.')
+    return errorResponse(400, 'Couldn\'t create the message item.')
   }
 }
